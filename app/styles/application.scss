@@ -1,0 +1,13 @@
+html {
+  height: 100%;
+  padding: 20px 40px;
+  font-size: 12px;
+}
+
+a {
+  color: rgba(black, 0.1);
+  text-decoration: none;
+  transition: border .3s;
+  border-bottom: 2px solid transparent;
+  &:hover { border-bottom-color: rgba(black, 0.1); }
+}

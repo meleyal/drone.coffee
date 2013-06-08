@@ -116,7 +116,7 @@ module.exports = class Drone
   # `bufferSize` defines the sound quality (number of samples to be processed).
   createNoiseGen: ->
     bufferSize = 256
-    noiseGen = @context.createJavaScriptNode bufferSize, 0, 1
+    noiseGen = @context.createJavaScriptNode bufferSize, 1, 1
     @noiseNodes.push noiseGen
     noiseGen.onaudioprocess = @onAudioProcess
     noiseGen

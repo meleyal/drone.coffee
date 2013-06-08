@@ -531,3 +531,22 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
 }
+
+@media -sass-debug-info{filename{}line{font-family:\000031}}
+html {
+  height: 100%;
+  padding: 20px 40px;
+  font-size: 12px; }
+
+@media -sass-debug-info{filename{}line{font-family:\000037}}
+a {
+  color: rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+  transition: border .3s;
+  border-bottom: 2px solid transparent; }
+@media -sass-debug-info{filename{}line{font-family:\0000312}}
+  a:hover {
+    border-bottom-color: rgba(0, 0, 0, 0.1); }
+
+
+/*@ sourceMappingURL=app.css.map*/

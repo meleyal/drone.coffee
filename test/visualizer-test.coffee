@@ -24,7 +24,4 @@ describe 'Visualizer', ->
     it 'should render', ->
       @visualizer.render()
       element = $('html')[0]
-      console.log element.style.background
       expect(element.style.background).toMatch(/rgb/)
-
-

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>drone.coffee</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page">
+            
+              
+              <a class="source" href="application.html">
+                application.coffee
+              </a>
+            
+              
+              <a class="source" href="drone.html">
+                drone.coffee
+              </a>
+            
+              
+              <a class="source" href="visualizer.html">
+                visualizer.coffee
+              </a>
+            
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>drone.coffee</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <p>A drone noise generator using the Web Audio API.</p>
+<p>By <a href="http://meleyal.com">William Meleyal</a>, algorithm based on <a href="http://matt-diamond.com/drone.html">Javascript Drone</a> by Matt Diamond.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>module.exports = <span class="class"><span class="keyword">class</span> <span class="title">Drone</span></span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>Shortcuts for Math methods.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  { random, floor, pow } = Math</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Define the <a href="http://goo.gl/O3S91">musical scale</a> that notes are selected from.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  scale:
+    [ <span class="number">0</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">11</span>, <span class="number">12</span>, <span class="number">14</span> ]</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>Connect to the provided <code>AudioContext</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  constructor: (<span class="property">@context</span>) -&gt;
+    <span class="keyword">throw</span> <span class="string">'AudioContext required'</span> <span class="keyword">unless</span> <span class="property">@context</span>
+    <span class="property">@noiseNodes</span> = []
+    <span class="property">@createOutput</span>()</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Start generating.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  play: -&gt;
+    <span class="property">@stop</span>()
+    <span class="property">@generate</span>()
+    <span class="literal">true</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>Stop generating.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  stop: -&gt;
+    <span class="property">@noiseNodes</span>.pop().disconnect() <span class="keyword">while</span> <span class="property">@noiseNodes</span>.length
+    <span class="literal">true</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>Destroy and cleanup.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  destroy: -&gt;
+    <span class="property">@stop</span>()
+    <span class="property">@output</span>.disconnect <span class="property">@context</span>.destination</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>Connect the main audio output.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  createOutput: -&gt;
+    <span class="property">@output</span> = <span class="property">@context</span>.createGainNode()
+    <span class="property">@output</span>.gain.value = <span class="number">20.0</span>
+    <span class="property">@output</span>.connect <span class="property">@context</span>.destination</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>Generate the drone using a random <code>toneCount</code>.
+The frequency of all tones are based on the <code>baseNote</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  generate: -&gt;
+    <span class="property">@toneCount</span> <span class="keyword">or</span>= _.random <span class="number">1</span>, <span class="number">40</span>
+    <span class="property">@baseNote</span> <span class="keyword">or</span>= _.random <span class="number">40</span>, <span class="number">70</span>
+
+    <span class="keyword">for</span> i <span class="keyword">in</span> [<span class="number">0.</span>.<span class="property">@toneCount</span>] <span class="keyword">by</span> <span class="number">1</span>
+      <span class="property">@createTone</span> <span class="property">@randomFreq</span>()</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>Generate a random frequency.
+TODO: document why rand is needed.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  randomFreq: -&gt;
+    note = <span class="property">@randomNote</span>()
+    freq = <span class="property">@midiToFreq</span> note
+    rand = (random() * <span class="number">4</span>) - <span class="number">2</span>
+    freq += rand</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <p>Generate a random note relative to the <code>baseNote</code>.
+Notes are picked from the scale to ensure harmony.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  randomNote: -&gt;
+    idx = floor(random() * <span class="property">@scale</span>.length)
+    degree = <span class="property">@scale</span>[idx]
+    <span class="property">@baseNote</span> + degree</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              <p>Generate random 3D (<code>x,y,z</code>) coordinates.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  randomCoords: -&gt;
+    [min, max] = [-<span class="number">20</span>, <span class="number">20</span>]
+    _.random(min, max) <span class="keyword">for</span> i <span class="keyword">in</span> [<span class="number">0.</span><span class="number">.2</span>]</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-13">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <p>Convert midi note number to frequency.
+Based on <a href="http://goo.gl/8KS8M"><code>mtof()</code></a> from ChucK/PD.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  midiToFreq: (number) -&gt;
+    exponent = (number - <span class="number">69</span>) / <span class="number">12</span>
+    pow(<span class="number">2</span>, exponent) * <span class="number">440</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-14">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-14">&#182;</a>
+              </div>
+              <p>Create a tone from the combination of a panner, filter, and noise generator node.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  createTone: (freq) -&gt;
+    panner = <span class="property">@createPanner</span>()
+    panner.connect <span class="property">@output</span>
+    filter = <span class="property">@createFilter</span> freq
+    filter.connect panner
+    noiseGen = <span class="property">@createNoiseGen</span>()
+    noiseGen.connect filter</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-15">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-15">&#182;</a>
+              </div>
+              <p>Create a <a href="http://goo.gl/DilZN">panner</a> to position the sound in 3D space.
+Randomize the position of the sound every half second to prevent sounds &#39;merging&#39;.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  createPanner: -&gt;
+    panner = <span class="property">@context</span>.createPanner()
+    [x,y,z] = <span class="property">@randomCoords</span>()
+    panner.setPosition x,y,z
+    <span class="function"><span class="title">movePan</span></span> = =&gt; <span class="property">@randomizePan</span> panner, [x,y,z]
+    setInterval movePan, <span class="number">500</span>
+    panner</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-16">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-16">&#182;</a>
+              </div>
+              <p>Randomize panner position incrementally.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  randomizePan: (panner, coords) =&gt;
+    [x, y, z] = coords
+    x = x + _.random -<span class="number">0.1</span>, <span class="number">0.1</span>
+    y = y + _.random -<span class="number">0.1</span>, <span class="number">0.1</span>
+    z = z + _.random -<span class="number">0.1</span>, <span class="number">0.1</span>
+    panner.setPosition x, y, z</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-17">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-17">&#182;</a>
+              </div>
+              <p>Create a bandpass <a href="http://goo.gl/VpVHq">filter</a> to limit
+the sound to a given frequency range.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  createFilter: (freq) -&gt;
+    filter = <span class="property">@context</span>.createBiquadFilter()
+    filter.type = filter.BANDPASS
+    filter.frequency.value = freq
+    filter.Q.value = <span class="number">150</span>
+    filter</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-18">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-18">&#182;</a>
+              </div>
+              <p>Create a <a href="http://goo.gl/eQEeW">script processor</a> to generate sound.
+<code>bufferSize</code> defines the sound quality (number of samples to be processed).</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  createNoiseGen: -&gt;
+    bufferSize = <span class="number">256</span>
+    noiseGen = <span class="property">@context</span>.createJavaScriptNode bufferSize, <span class="number">0</span>, <span class="number">1</span>
+    <span class="property">@noiseNodes</span>.push noiseGen
+    noiseGen.onaudioprocess = <span class="property">@onAudioProcess</span>
+    noiseGen</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-19">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-19">&#182;</a>
+              </div>
+              <p>On each <code>audioprocess</code> event, fill each sample in the <code>noiseGen</code>
+buffer with random numbers (multiplied so they are audible).</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  onAudioProcess: (e) =&gt;
+    buffer = e.outputBuffer
+    out = buffer.getChannelData <span class="number">0</span>
+    bufferSize = buffer.length
+
+    <span class="keyword">for</span> i <span class="keyword">in</span> [<span class="number">0.</span>..bufferSize] <span class="keyword">by</span> <span class="number">1</span>
+      out[i] = (random() * <span class="number">2</span>) - <span class="number">1</span></pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

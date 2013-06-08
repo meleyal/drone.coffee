@@ -19,7 +19,7 @@
           <div id="jump_page">
             
               
-              <a class="source" href="application.html">
+              <a class="source" href="index.html">
                 application.coffee
               </a>
             
@@ -374,7 +374,7 @@ the sound to a given frequency range.</p>
             
             <div class="content"><div class='highlight'><pre>  createNoiseGen: -&gt;
     bufferSize = <span class="number">256</span>
-    noiseGen = <span class="property">@context</span>.createJavaScriptNode bufferSize, <span class="number">0</span>, <span class="number">1</span>
+    noiseGen = <span class="property">@context</span>.createJavaScriptNode bufferSize, <span class="number">1</span>, <span class="number">1</span>
     <span class="property">@noiseNodes</span>.push noiseGen
     noiseGen.onaudioprocess = <span class="property">@onAudioProcess</span>
     noiseGen</pre></div></div>

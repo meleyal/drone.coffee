@@ -1,6 +1,6 @@
 {
   "name": "Drone.coffee",
-  "description": "Package description",
+  "description": "A drone noise generator using the Web Audio API",
   "author": "William Meleyal",
   "version": "1.0.0",
   "license": "MIT",

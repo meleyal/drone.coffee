@@ -1,13 +1,19 @@
 
-d   r   o   n   e   .   c   o   f   f   e   e
-
+   ____                                         _   _
+  (|   \                                       | | | |
+   |    | ,_    __   _  _    _        __   __  | | | |  _   _
+  _|    |/  |  /  \_/ |/ |  |/       /    /  \_|/  |/  |/  |/
+ (/\___/    |_/\__/   |  |_/|__/  o  \___/\__/ |__/|__/|__/|__/
+                                               |\  |\
+                                               |/  |/
 
   A drone noise generator using the Web Audio API.
 
 
-  - http://meleyal.com/drone.coffee
+  [App] http://meleyal.com/drone.coffee
 
-  - http://meleyal.com/drone.coffee/docs (annotated source)
+  [Source] http://meleyal.com/drone.coffee/docs/drone.html
 
 
-  By [William Meleyal](http://meleyal.com), algorithm based on [Javascript Drone](http://matt-diamond.com/drone.html) by Matt Diamond.
+  By William Meleyal http://meleyal.com
+  Algorithm based on http://matt-diamond.com/drone.html

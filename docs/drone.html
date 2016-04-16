@@ -58,7 +58,8 @@
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>module.exports = <span class="class"><span class="keyword">class</span> <span class="title">Drone</span></span></pre></div></div>
+            <div class="content"><div class='highlight'><pre>
+<span class="hljs-built_in">module</span>.exports = <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Drone</span></span></pre></div></div>
             
         </li>
         
@@ -89,7 +90,7 @@
             </div>
             
             <div class="content"><div class='highlight'><pre>  scale:
-    [ <span class="number">0</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">11</span>, <span class="number">12</span>, <span class="number">14</span> ]</pre></div></div>
+    [ <span class="hljs-number">0</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">9</span>, <span class="hljs-number">11</span>, <span class="hljs-number">12</span>, <span class="hljs-number">14</span> ]</pre></div></div>
             
         </li>
         
@@ -104,10 +105,10 @@
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  constructor: (<span class="property">@context</span>) -&gt;
-    <span class="keyword">throw</span> <span class="string">'AudioContext required'</span> <span class="keyword">unless</span> <span class="property">@context</span>
-    <span class="property">@noiseNodes</span> = []
-    <span class="property">@createOutput</span>()</pre></div></div>
+            <div class="content"><div class='highlight'><pre>  constructor: <span class="hljs-function"><span class="hljs-params">(@context)</span> -&gt;</span>
+    <span class="hljs-keyword">throw</span> <span class="hljs-string">'AudioContext required'</span> <span class="hljs-keyword">unless</span> @context
+    @noiseNodes = []
+    @createOutput()</pre></div></div>
             
         </li>
         
@@ -122,10 +123,10 @@
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  play: -&gt;
-    <span class="property">@stop</span>()
-    <span class="property">@generate</span>()
-    <span class="literal">true</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre>  play: <span class="hljs-function">-&gt;</span>
+    @stop()
+    @generate()
+    <span class="hljs-literal">true</span></pre></div></div>
             
         </li>
         
@@ -140,9 +141,9 @@
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  stop: -&gt;
-    <span class="property">@noiseNodes</span>.pop().disconnect() <span class="keyword">while</span> <span class="property">@noiseNodes</span>.length
-    <span class="literal">true</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre>  stop: <span class="hljs-function">-&gt;</span>
+    @noiseNodes.pop().disconnect() <span class="hljs-keyword">while</span> @noiseNodes.length
+    <span class="hljs-literal">true</span></pre></div></div>
             
         </li>
         
@@ -157,9 +158,9 @@
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  destroy: -&gt;
-    <span class="property">@stop</span>()
-    <span class="property">@output</span>.disconnect <span class="property">@context</span>.destination</pre></div></div>
+            <div class="content"><div class='highlight'><pre>  destroy: <span class="hljs-function">-&gt;</span>
+    @stop()
+    @output.disconnect @context.destination</pre></div></div>
             
         </li>
         
@@ -174,10 +175,10 @@
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  createOutput: -&gt;
-    <span class="property">@output</span> = <span class="property">@context</span>.createGainNode()
-    <span class="property">@output</span>.gain.value = <span class="number">20.0</span>
-    <span class="property">@output</span>.connect <span class="property">@context</span>.destination</pre></div></div>
+            <div class="content"><div class='highlight'><pre>  createOutput: <span class="hljs-function">-&gt;</span>
+    @output = @context.createGainNode()
+    @output.gain.value = <span class="hljs-number">20.0</span>
+    @output.connect @context.destination</pre></div></div>
             
         </li>
         
@@ -193,12 +194,12 @@ The frequency of all tones are based on the <code>baseNote</code>.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  generate: -&gt;
-    <span class="property">@toneCount</span> <span class="keyword">or</span>= _.random <span class="number">1</span>, <span class="number">40</span>
-    <span class="property">@baseNote</span> <span class="keyword">or</span>= _.random <span class="number">40</span>, <span class="number">70</span>
+            <div class="content"><div class='highlight'><pre>  generate: <span class="hljs-function">-&gt;</span>
+    @toneCount <span class="hljs-keyword">or</span>= _.random <span class="hljs-number">1</span>, <span class="hljs-number">40</span>
+    @baseNote <span class="hljs-keyword">or</span>= _.random <span class="hljs-number">40</span>, <span class="hljs-number">70</span>
 
-    <span class="keyword">for</span> i <span class="keyword">in</span> [<span class="number">0.</span>.<span class="property">@toneCount</span>] <span class="keyword">by</span> <span class="number">1</span>
-      <span class="property">@createTone</span> <span class="property">@randomFreq</span>()</pre></div></div>
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> [<span class="hljs-number">0.</span>.@toneCount] <span class="hljs-keyword">by</span> <span class="hljs-number">1</span>
+      @createTone @randomFreq()</pre></div></div>
             
         </li>
         
@@ -214,10 +215,10 @@ TODO: document why rand is needed.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  randomFreq: -&gt;
-    note = <span class="property">@randomNote</span>()
-    freq = <span class="property">@midiToFreq</span> note
-    rand = (random() * <span class="number">4</span>) - <span class="number">2</span>
+            <div class="content"><div class='highlight'><pre>  randomFreq: <span class="hljs-function">-&gt;</span>
+    note = @randomNote()
+    freq = @midiToFreq note
+    rand = (random() * <span class="hljs-number">4</span>) - <span class="hljs-number">2</span>
     freq += rand</pre></div></div>
             
         </li>
@@ -234,10 +235,10 @@ Notes are picked from the scale to ensure harmony.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  randomNote: -&gt;
-    idx = floor(random() * <span class="property">@scale</span>.length)
-    degree = <span class="property">@scale</span>[idx]
-    <span class="property">@baseNote</span> + degree</pre></div></div>
+            <div class="content"><div class='highlight'><pre>  randomNote: <span class="hljs-function">-&gt;</span>
+    idx = floor(random() * @scale.length)
+    degree = @scale[idx]
+    @baseNote + degree</pre></div></div>
             
         </li>
         
@@ -252,9 +253,9 @@ Notes are picked from the scale to ensure harmony.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  randomCoords: -&gt;
-    [min, max] = [-<span class="number">20</span>, <span class="number">20</span>]
-    _.random(min, max) <span class="keyword">for</span> i <span class="keyword">in</span> [<span class="number">0.</span><span class="number">.2</span>]</pre></div></div>
+            <div class="content"><div class='highlight'><pre>  randomCoords: <span class="hljs-function">-&gt;</span>
+    [min, max] = [<span class="hljs-number">-20</span>, <span class="hljs-number">20</span>]
+    _.random(min, max) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> [<span class="hljs-number">0.</span><span class="hljs-number">.2</span>]</pre></div></div>
             
         </li>
         
@@ -270,9 +271,9 @@ Based on <a href="http://goo.gl/8KS8M"><code>mtof()</code></a> from ChucK/PD.</p
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  midiToFreq: (number) -&gt;
-    exponent = (number - <span class="number">69</span>) / <span class="number">12</span>
-    pow(<span class="number">2</span>, exponent) * <span class="number">440</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre>  midiToFreq: <span class="hljs-function"><span class="hljs-params">(number)</span> -&gt;</span>
+    exponent = (number - <span class="hljs-number">69</span>) / <span class="hljs-number">12</span>
+    pow(<span class="hljs-number">2</span>, exponent) * <span class="hljs-number">440</span></pre></div></div>
             
         </li>
         
@@ -287,12 +288,12 @@ Based on <a href="http://goo.gl/8KS8M"><code>mtof()</code></a> from ChucK/PD.</p
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  createTone: (freq) -&gt;
-    panner = <span class="property">@createPanner</span>()
-    panner.connect <span class="property">@output</span>
-    filter = <span class="property">@createFilter</span> freq
+            <div class="content"><div class='highlight'><pre>  createTone: <span class="hljs-function"><span class="hljs-params">(freq)</span> -&gt;</span>
+    panner = @createPanner()
+    panner.connect @output
+    filter = @createFilter freq
     filter.connect panner
-    noiseGen = <span class="property">@createNoiseGen</span>()
+    noiseGen = @createNoiseGen()
     noiseGen.connect filter</pre></div></div>
             
         </li>
@@ -305,16 +306,16 @@ Based on <a href="http://goo.gl/8KS8M"><code>mtof()</code></a> from ChucK/PD.</p
                 <a class="pilcrow" href="#section-15">&#182;</a>
               </div>
               <p>Create a <a href="http://goo.gl/DilZN">panner</a> to position the sound in 3D space.
-Randomize the position of the sound every half second to prevent sounds &#39;merging&#39;.</p>
+Randomize the position of the sound every half second to prevent sounds ‘merging’.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  createPanner: -&gt;
-    panner = <span class="property">@context</span>.createPanner()
-    [x,y,z] = <span class="property">@randomCoords</span>()
+            <div class="content"><div class='highlight'><pre>  createPanner: <span class="hljs-function">-&gt;</span>
+    panner = @context.createPanner()
+    [x,y,z] = @randomCoords()
     panner.setPosition x,y,z
-    <span class="function"><span class="title">movePan</span></span> = =&gt; <span class="property">@randomizePan</span> panner, [x,y,z]
-    setInterval movePan, <span class="number">500</span>
+<span class="hljs-function">    <span class="hljs-title">movePan</span> = =&gt;</span> @randomizePan panner, [x,y,z]
+    setInterval movePan, <span class="hljs-number">500</span>
     panner</pre></div></div>
             
         </li>
@@ -330,11 +331,11 @@ Randomize the position of the sound every half second to prevent sounds &#39;mer
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  randomizePan: (panner, coords) =&gt;
+            <div class="content"><div class='highlight'><pre>  randomizePan: <span class="hljs-function"><span class="hljs-params">(panner, coords)</span> =&gt;</span>
     [x, y, z] = coords
-    x = x + _.random -<span class="number">0.1</span>, <span class="number">0.1</span>
-    y = y + _.random -<span class="number">0.1</span>, <span class="number">0.1</span>
-    z = z + _.random -<span class="number">0.1</span>, <span class="number">0.1</span>
+    x = x + _.random <span class="hljs-number">-0.1</span>, <span class="hljs-number">0.1</span>
+    y = y + _.random <span class="hljs-number">-0.1</span>, <span class="hljs-number">0.1</span>
+    z = z + _.random <span class="hljs-number">-0.1</span>, <span class="hljs-number">0.1</span>
     panner.setPosition x, y, z</pre></div></div>
             
         </li>
@@ -351,11 +352,11 @@ the sound to a given frequency range.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  createFilter: (freq) -&gt;
-    filter = <span class="property">@context</span>.createBiquadFilter()
+            <div class="content"><div class='highlight'><pre>  createFilter: <span class="hljs-function"><span class="hljs-params">(freq)</span> -&gt;</span>
+    filter = @context.createBiquadFilter()
     filter.type = filter.BANDPASS
     filter.frequency.value = freq
-    filter.Q.value = <span class="number">150</span>
+    filter.Q.value = <span class="hljs-number">150</span>
     filter</pre></div></div>
             
         </li>
@@ -372,11 +373,11 @@ the sound to a given frequency range.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  createNoiseGen: -&gt;
-    bufferSize = <span class="number">256</span>
-    noiseGen = <span class="property">@context</span>.createJavaScriptNode bufferSize, <span class="number">1</span>, <span class="number">1</span>
-    <span class="property">@noiseNodes</span>.push noiseGen
-    noiseGen.onaudioprocess = <span class="property">@onAudioProcess</span>
+            <div class="content"><div class='highlight'><pre>  createNoiseGen: <span class="hljs-function">-&gt;</span>
+    bufferSize = <span class="hljs-number">256</span>
+    noiseGen = @context.createJavaScriptNode bufferSize, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>
+    @noiseNodes.push noiseGen
+    noiseGen.onaudioprocess = @onAudioProcess
     noiseGen</pre></div></div>
             
         </li>
@@ -393,13 +394,13 @@ buffer with random numbers (multiplied so they are audible).</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  onAudioProcess: (e) =&gt;
+            <div class="content"><div class='highlight'><pre>  onAudioProcess: <span class="hljs-function"><span class="hljs-params">(e)</span> =&gt;</span>
     buffer = e.outputBuffer
-    out = buffer.getChannelData <span class="number">0</span>
+    out = buffer.getChannelData <span class="hljs-number">0</span>
     bufferSize = buffer.length
 
-    <span class="keyword">for</span> i <span class="keyword">in</span> [<span class="number">0.</span>..bufferSize] <span class="keyword">by</span> <span class="number">1</span>
-      out[i] = (random() * <span class="number">2</span>) - <span class="number">1</span></pre></div></div>
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> [<span class="hljs-number">0.</span>..bufferSize] <span class="hljs-keyword">by</span> <span class="hljs-number">1</span>
+      out[i] = (random() * <span class="hljs-number">2</span>) - <span class="hljs-number">1</span></pre></div></div>
             
         </li>
         

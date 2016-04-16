@@ -56,24 +56,24 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre>module.exports = <span class="class"><span class="keyword">class</span> <span class="title">Visualizer</span></span>
+            <div class="content"><div class='highlight'><pre><span class="hljs-built_in">module</span>.exports = <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Visualizer</span></span>
 
   { random, floor } = Math
 
-  constructor: (element) -&gt;
-    <span class="keyword">throw</span> <span class="string">'Visualizer requires an element'</span> <span class="keyword">unless</span> element
-    <span class="property">@element</span> = $(element)
+  constructor: <span class="hljs-function"><span class="hljs-params">(element)</span> -&gt;</span>
+    <span class="hljs-keyword">throw</span> <span class="hljs-string">'Visualizer requires an element'</span> <span class="hljs-keyword">unless</span> element
+    @element = $(element)
 
-  render: -&gt;
-    values = (_.times <span class="number">2</span>, <span class="property">@randomColor</span>).join(<span class="string">','</span>)
-    <span class="property">@element</span>.css { background: <span class="string">"-webkit-radial-gradient(<span class="subst">#{values}</span>)"</span> }
+  render: <span class="hljs-function">-&gt;</span>
+    values = (_.times <span class="hljs-number">2</span>, @randomColor).join(<span class="hljs-string">','</span>)
+    @element.css { background: <span class="hljs-string">"-webkit-radial-gradient(<span class="hljs-subst">#{values}</span>)"</span> }
 
-  randomColor: =&gt;
-    rgb = (<span class="property">@randomNumber</span>() <span class="keyword">for</span> num <span class="keyword">in</span> [<span class="number">0.</span><span class="number">.2</span>]).join(<span class="string">','</span>)
-    <span class="string">"rgb(<span class="subst">#{rgb}</span>)"</span>
+  randomColor: <span class="hljs-function">=&gt;</span>
+    rgb = (@randomNumber() <span class="hljs-keyword">for</span> num <span class="hljs-keyword">in</span> [<span class="hljs-number">0.</span><span class="hljs-number">.2</span>]).join(<span class="hljs-string">','</span>)
+    <span class="hljs-string">"rgb(<span class="hljs-subst">#{rgb}</span>)"</span>
 
-  randomNumber: -&gt;
-    floor random() * <span class="number">255</span></pre></div></div>
+  randomNumber: <span class="hljs-function">-&gt;</span>
+    floor random() * <span class="hljs-number">255</span></pre></div></div>
             
         </li>
         

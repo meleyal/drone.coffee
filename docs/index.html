@@ -56,24 +56,24 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre>Drone = require <span class="string">'drone'</span>
-Visualizer = require <span class="string">'visualizer'</span>
+            <div class="content"><div class='highlight'><pre>Drone = <span class="hljs-built_in">require</span> <span class="hljs-string">'drone'</span>
+Visualizer = <span class="hljs-built_in">require</span> <span class="hljs-string">'visualizer'</span>
 
-module.exports = <span class="class"><span class="keyword">class</span> <span class="title">Application</span></span>
+<span class="hljs-built_in">module</span>.exports = <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Application</span></span>
 
-  constructor: -&gt;
-    AudioContext = window.webkitAudioContext <span class="keyword">or</span> window.AudioContext
-    <span class="keyword">throw</span> <span class="string">'WebAudio support required'</span> <span class="keyword">unless</span> AudioContext
-    context = <span class="keyword">new</span> AudioContext
-    <span class="property">@drone</span> = <span class="keyword">new</span> Drone context
-    <span class="property">@visualizer</span> = <span class="keyword">new</span> Visualizer <span class="string">'html'</span>
-    <span class="property">@initialize</span>()
+  constructor: <span class="hljs-function">-&gt;</span>
+    AudioContext = <span class="hljs-built_in">window</span>.AudioContext
+    <span class="hljs-keyword">throw</span> <span class="hljs-string">'WebAudio support required'</span> <span class="hljs-keyword">unless</span> AudioContext
+    context = <span class="hljs-keyword">new</span> AudioContext
+    @drone = <span class="hljs-keyword">new</span> Drone context
+    @visualizer = <span class="hljs-keyword">new</span> Visualizer <span class="hljs-string">'html'</span>
+    @initialize()
 
-  initialize: -&gt;
-    <span class="property">@visualizer</span>.render()
-    <span class="property">@drone</span>.play()
+  initialize: <span class="hljs-function">-&gt;</span>
+    @visualizer.render()
+    @drone.play()
 
-window.app = <span class="keyword">new</span> Application</pre></div></div>
+<span class="hljs-built_in">window</span>.app = <span class="hljs-keyword">new</span> Application</pre></div></div>
             
         </li>
         

@@ -4,7 +4,7 @@ Visualizer = require 'visualizer'
 module.exports = class Application
 
   constructor: ->
-    AudioContext = window.webkitAudioContext or window.AudioContext
+    AudioContext = window.AudioContext
     throw 'WebAudio support required' unless AudioContext
     context = new AudioContext
     @drone = new Drone context

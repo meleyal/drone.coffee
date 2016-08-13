@@ -37,7 +37,7 @@ module.exports = class Drone
 
   # Connect the main audio output.
   createOutput: ->
-    @output = @context.createGainNode()
+    @output = @context.createGain()
     @output.gain.value = 20.0
     @output.connect @context.destination
 
@@ -107,7 +107,7 @@ module.exports = class Drone
   # the sound to a given frequency range.
   createFilter: (freq) ->
     filter = @context.createBiquadFilter()
-    filter.type = filter.BANDPASS
+    filter.type = "bandpass"
     filter.frequency.value = freq
     filter.Q.value = 150
     filter
@@ -116,7 +116,7 @@ module.exports = class Drone
   # `bufferSize` defines the sound quality (number of samples to be processed).
   createNoiseGen: ->
     bufferSize = 256
-    noiseGen = @context.createJavaScriptNode bufferSize, 1, 1
+    noiseGen = @context.createScriptProcessor bufferSize, 1, 1
     @noiseNodes.push noiseGen
     noiseGen.onaudioprocess = @onAudioProcess
     noiseGen
